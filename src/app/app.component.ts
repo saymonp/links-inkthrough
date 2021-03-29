@@ -68,7 +68,7 @@ export class AppComponent implements OnInit {
         this._router = this.router.events
           .pipe(filter(event => event instanceof NavigationEnd))
           .subscribe((event: NavigationEnd) => {
-            gtag('config', 'UA-343565455–1', {'page_path': event.urlAfterRedirects});
+            gtag('config', 'G-71RXPKPRDL', {'page_path': event.urlAfterRedirects});
           });
       }
       ngOnDestroy(): void {
