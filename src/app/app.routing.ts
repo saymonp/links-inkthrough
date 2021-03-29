@@ -8,8 +8,7 @@ import { NucleoiconsComponent } from './components/nucleoicons/nucleoicons.compo
 import { LinktreeComponent } from './examples/linktree/linktree.component';
 
 const routes: Routes =[
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
-    { path: 'home',             component: LinktreeComponent },
+    { path: '',  component: LinktreeComponent },
 ];
 
 @NgModule({
