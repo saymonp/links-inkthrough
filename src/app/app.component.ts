@@ -5,6 +5,8 @@ import 'rxjs/add/operator/filter';
 import { DOCUMENT } from '@angular/common';
 import { LocationStrategy, PlatformLocation, Location } from '@angular/common';
 import { NavbarComponent } from './shared/navbar/navbar.component';
+import { filter } from 'rxjs/operators';
+declare var gtag: Function;
 
 @Component({
     selector: 'app-root',
@@ -60,4 +62,16 @@ export class AppComponent implements OnInit {
             return true;
         }
     }
+
+    ngAfterViewInit(): void {
+        // subscribe to router events and send page views to Google Analytics
+        this._router = this.router.events
+          .pipe(filter(event => event instanceof NavigationEnd))
+          .subscribe((event: NavigationEnd) => {
+            gtag('config', 'UA-343565455–1', {'page_path': event.urlAfterRedirects});
+          });
+      }
+      ngOnDestroy(): void {
+        this._router.unsubscribe();
+      }
 }
